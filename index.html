@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Masters Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('background.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            max-width: 400px;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background: #ff9800;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ff5722;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Match Masters" class="logo">
+        <h1>Match Masters Generator</h1>
+        <p>Generate Coins for your ID</p>
+        <p>USERS ONLINE: <span id="usersOnline">111</span></p>
+
+        <label>STEP 1: Enter Your Gaming ID/Username</label>
+        <input type="text" id="username" placeholder="Your Gaming ID/Username">
+
+        <label>STEP 2: Select Your Device</label>
+        <div class="buttons">
+            <button onclick="selectDevice('Android')">Android</button>
+            <button onclick="selectDevice('Apple')">Apple</button>
+        </div>
+
+        <label>STEP 3: Select Coins</label>
+        <select id="coins">
+            <option>10,000 Coins</option>
+            <option>15,000 Coins</option>
+            <option>20,000 Coins</option>
+        </select>
+
+        <button class="generate-btn" onclick="startProcessing()">Generate Coins</button>
+
+        <div id="loading" class="hidden">
+            <p>Processing...</p>
+            <progress value="0" max="100" id="progressBar"></progress>
+        </div>
+    </div>
+
+    <script>
+        function selectDevice(device) {
+            alert(device + " selected!");
+        }
+
+        function startProcessing() {
+            document.getElementById("loading").classList.remove("hidden");
+
+            let progressBar = document.getElementById("progressBar");
+            let progress = 0;
+            let interval = setInterval(() => {
+                progress += 10;
+                progressBar.value = progress;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    alert("Coins Generated Successfully!");
+                }
+            }, 500);
+        }
+    </script>
+</body>
+</html>
